@@ -1,13 +1,4 @@
-"""Fig. 11: w0-wa posteriors for DESI DR2 BAO + CMB (+ Pantheon+, Union3 or DESY5) in w0waCDM.
 
-The paper's Fig. 11 uses the full Planck (+ ACT lensing) likelihood. The chains plotted here
-(Fig7/RunChains.py, run_w0wa) replace it by the paper's own Appendix A compression: a Gaussian
-prior on the early-Universe quantities (theta*, omega_b, omega_bc). They therefore correspond
-to the paper's "DESI + (theta*, omega_b, omega_bc)_CMB" rows, whose contours agree with the
-full-CMB ones to ~0.1 sigma but which carry no CMB lensing, so the paper's delta-chi^2
-significance for this case is 2.4 sigma rather than 3.1 sigma. The legend uses the paper's
-notation for the compressed prior to keep that distinction visible.
-"""
 from pathlib import Path
 
 import numpy as np
@@ -51,8 +42,7 @@ def main():
 
     # The paper's notation for the compressed CMB prior (see module docstring)
     CMB = r"$(\theta_\ast,\omega_\mathrm{b},\omega_\mathrm{bc})_\mathrm{CMB}$"
-    #CMB = r"CMB"
-
+    #CMB = r"CMB" 
     # Roots, colours and legend labels are matched positionally, so keep these three
     # lists in the same order. Largest contours first so the small ones sit on top.
     roots  = [desi_cmb, desi_cmb_union3, desi_cmb_pantheonplus, desi_cmb_desy5]

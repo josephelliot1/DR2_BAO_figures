@@ -251,8 +251,7 @@ CMB_COV = 1e-9 * np.array([[ 0.006621,   0.12444,   -1.1929],
 CMB_INVCOV = np.linalg.inv(CMB_COV)
 
 def cmb_compressed_prior(theta_star_100, ombh2, omch2):
-    #log-prior; like an external likelihood, the argument names must be sampled parameters.
-    #omega_bc = omega_b + omega_c (the 0.06 eV neutrino is counted separately by CAMB).
+    
     d = np.array([theta_star_100 / 100, ombh2, ombh2 + omch2]) - CMB_MU
     return -0.5 * d @ CMB_INVCOV @ d
 
@@ -269,17 +268,14 @@ def run_w0wa(name, sn_like=None, force=False):
     if sn_like is not None:
         likes[sn_like] = None
     info = {
-        #ppf: CAMB's default 'fluid' dark energy refuses any w(a) that crosses -1
         "theory": {"camb": {"extra_args": {"nnu": 3.044, "num_massive_neutrinos": 1,
                                            "dark_energy_model": "ppf"}}},
         "likelihood": likes,
-        #extra log-priors on top of the per-parameter ones, resolved by argument name
         "prior": {
             "cmb_compressed": cmb_compressed_prior,
             "matter_dom": "lambda w, wa: 0 if w + wa < 0 else -np.inf",   #paper: w0 + wa < 0
         },
         "params": {
-            #flat boxes only; the CMB Gaussian above does the constraining
             "ombh2": {"prior": {"min": 0.015, "max": 0.03}, "ref": 0.02223,
                       "proposal": 0.0001, "latex": r"\omega_\mathrm{b}"},
             "omch2": {"prior": {"min": 0.05, "max": 0.25}, "ref": 0.1198,
@@ -287,7 +283,6 @@ def run_w0wa(name, sn_like=None, force=False):
             "theta_star_100": {"prior": {"min": 1.0, "max": 1.1}, "ref": 1.041,
                                "proposal": 0.0002, "latex": r"100\theta_\ast"},
             "thetastar": {"value": "lambda theta_star_100: 1e-2*theta_star_100"},
-            #paper priors: w0 in U[-3, 1], wa in U[-3, 2]; CAMB's names are w and wa
             "w":  {"prior": {"min": -3.0, "max": 1.0}, "ref": -0.8, "proposal": 0.05, "latex": r"w_0"},
             "wa": {"prior": {"min": -3.0, "max": 2.0}, "ref": -0.8, "proposal": 0.1,  "latex": r"w_a"},
             "mnu": 0.06,
