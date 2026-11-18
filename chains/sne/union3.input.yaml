@@ -1,0 +1,27 @@
+theory:
+  camb:
+    extra_args:
+      nnu: 3.044
+      num_massive_neutrinos: 1
+likelihood:
+  sn.union3: null
+params:
+  omch2:
+    prior:
+      min: 0.02
+      max: 0.3
+    ref: 0.14
+    proposal: 0.005
+    latex: \omega_\mathrm{c}
+  H0: 70.0
+  ombh2: 0.02218
+  mnu: 0.06
+  omegam:
+    latex: \Omega_\mathrm{m}
+sampler:
+  mcmc:
+    Rminus1_stop: 0.002
+    Rminus1_cl_stop: 0.02
+    max_tries: 100000
+output: union3
+packages_path: /Users/ElliotJ/cobaya_packages

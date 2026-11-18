@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "desi_bao"
+version = "0.1.0"
+description = "Reproduction of figures from DESI DR2 BAO (arXiv:2503.14738)"
+requires-python = ">=3.12"
+
+[tool.setuptools]
+packages = ["desi_bao"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = ["slow: needs the downloaded Planck data and initialises CAMB (deselected by default)"]
+addopts = "-m 'not slow'"

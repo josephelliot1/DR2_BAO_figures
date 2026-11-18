@@ -1,0 +1,47 @@
+theory:
+  camb:
+    extra_args:
+      nnu: 3.044
+      num_massive_neutrinos: 1
+likelihood:
+  bao.desi_dr2.desi_bao_elg2: null
+  bao.desi_dr2.desi_bao_qso: null
+  bao.desi_dr2.desi_bao_lya: null
+params:
+  ombh2:
+    prior:
+      dist: norm
+      loc: 0.02218
+      scale: 0.00055
+    proposal: 0.0001
+    latex: \omega_\mathrm{b}
+  omch2:
+    prior:
+      min: 0.05
+      max: 0.25
+    ref: 0.117
+    proposal: 0.001
+    latex: \omega_\mathrm{c}
+  theta_star_100:
+    prior:
+      min: 0.5
+      max: 1.5
+    ref: 1.0411
+    proposal: 0.0002
+    latex: 100\theta_\ast
+  thetastar:
+    value: 'lambda theta_star_100: 1e-2*theta_star_100'
+  mnu: 0.06
+  H0:
+    latex: H_0
+  omegam:
+    latex: \Omega_\mathrm{m}
+  rdrag:
+    latex: r_\mathrm{d}
+sampler:
+  mcmc:
+    Rminus1_stop: 0.002
+    Rminus1_cl_stop: 0.02
+    max_tries: 100000
+output: ALL
+packages_path: /Users/ElliotJ/cobaya_packages

@@ -1,0 +1,23 @@
+likelihood:
+  bao_LRG3+ELG1: true
+params:
+  Omega_m:
+    prior:
+      min: 0.01
+      max: 0.99
+    ref: 0.3
+    proposal: 0.01
+    latex: \Omega_\mathrm{m}
+  H_0r_d:
+    prior:
+      min: 20.0
+      max: 200.0
+    ref: 101.5
+    proposal: 1.0
+    latex: H_0 r_\mathrm{d}\ [100\,\mathrm{km\,s^{-1}}]
+sampler:
+  mcmc:
+    Rminus1_stop: 0.002
+    Rminus1_cl_stop: 0.02
+    max_tries: 100000
+output: LRG3+ELG1

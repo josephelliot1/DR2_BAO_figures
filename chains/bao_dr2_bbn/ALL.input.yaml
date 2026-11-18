@@ -1,0 +1,32 @@
+likelihood:
+  bao_ALL: true
+params:
+  Omega_m:
+    prior:
+      min: 0.01
+      max: 0.99
+    ref: 0.3
+    proposal: 0.01
+    latex: \Omega_\mathrm{m}
+  H_0:
+    prior:
+      min: 50.0
+      max: 100.0
+    proposal: 1.0
+    latex: H_0
+  omega_b:
+    prior:
+      dist: norm
+      loc: 0.02218
+      scale: 0.00055
+    proposal: 0.0001
+    latex: \omega_\mathrm{b}
+  H_0r_d:
+    value: true
+    latex: H_0 r_\mathrm{d}\ [100\,\mathrm{km\,s^{-1}}]
+sampler:
+  mcmc:
+    Rminus1_stop: 0.002
+    Rminus1_cl_stop: 0.02
+    max_tries: 100000
+output: ALL

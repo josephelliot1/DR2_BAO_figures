@@ -1,0 +1,66 @@
+theory: null
+likelihood:
+  bao_LRG1:
+    type: []
+    speed: -1
+    stop_at_error: false
+    version: null
+    external: true
+    input_params:
+    - Omega_m
+    - H_0r_d
+    output_params: []
+params:
+  Omega_m:
+    prior:
+      min: 0.01
+      max: 0.99
+    ref: 0.3
+    proposal: 0.01
+    latex: \Omega_\mathrm{m}
+  H_0r_d:
+    prior:
+      min: 20.0
+      max: 200.0
+    ref: 101.5
+    proposal: 1.0
+    latex: H_0 r_\mathrm{d}\ [100\,\mathrm{km\,s^{-1}}]
+sampler:
+  mcmc:
+    sampler_type: mcmc
+    supports_periodic_params: true
+    burn_in: 0
+    max_tries: 100000
+    covmat: null
+    covmat_params: null
+    proposal_scale: 2.4
+    output_every: 60s
+    learn_every: 40d
+    temperature: 1
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 2.0
+    learn_proposal_Rminus1_max_early: 30.0
+    learn_proposal_Rminus1_min: 0.0
+    max_samples: .inf
+    Rminus1_stop: 0.002
+    Rminus1_cl_stop: 0.02
+    Rminus1_cl_level: 0.95
+    Rminus1_single_split: 4
+    measure_speeds: true
+    oversample_power: 0.4
+    oversample_thin: true
+    drag: false
+    blocking:
+    - - 1
+      - - Omega_m
+        - H_0r_d
+    callback_function: null
+    callback_every: null
+    seed: null
+    check_every: null
+    oversample: null
+    drag_limits: null
+    fallback_covmat_scale: 4
+    version: 3.6.2
+output: LRG1
+version: 3.6.2

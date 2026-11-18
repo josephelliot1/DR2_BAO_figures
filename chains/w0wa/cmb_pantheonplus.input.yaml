@@ -1,0 +1,64 @@
+theory:
+  camb:
+    extra_args:
+      nnu: 3.044
+      num_massive_neutrinos: 1
+      dark_energy_model: ppf
+likelihood:
+  bao.desi_dr2.desi_bao_all: null
+  sn.pantheonplus: null
+prior:
+  cmb_compressed: true
+  matter_dom: 'lambda w, wa: 0 if w + wa < 0 else -np.inf'
+params:
+  ombh2:
+    prior:
+      min: 0.015
+      max: 0.03
+    ref: 0.02223
+    proposal: 0.0001
+    latex: \omega_\mathrm{b}
+  omch2:
+    prior:
+      min: 0.05
+      max: 0.25
+    ref: 0.1198
+    proposal: 0.001
+    latex: \omega_\mathrm{c}
+  theta_star_100:
+    prior:
+      min: 1.0
+      max: 1.1
+    ref: 1.041
+    proposal: 0.0002
+    latex: 100\theta_\ast
+  thetastar:
+    value: 'lambda theta_star_100: 1e-2*theta_star_100'
+  w:
+    prior:
+      min: -3.0
+      max: 1.0
+    ref: -0.8
+    proposal: 0.05
+    latex: w_0
+  wa:
+    prior:
+      min: -3.0
+      max: 2.0
+    ref: -0.8
+    proposal: 0.1
+    latex: w_a
+  mnu: 0.06
+  H0:
+    latex: H_0
+  omegam:
+    latex: \Omega_\mathrm{m}
+  rdrag:
+    latex: r_\mathrm{d}
+sampler:
+  mcmc:
+    Rminus1_stop: 0.002
+    Rminus1_cl_stop: 0.02
+    max_tries: 100000
+output: cmb_pantheonplus
+packages_path: /Users/ElliotJ/cobaya_packages
